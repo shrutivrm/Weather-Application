@@ -1,0 +1,71 @@
+.inputStyle {
+  background-color: rgb(71 85 105);
+  border-color: rgb(100 116 139);
+  color: rgb(226 232 240);
+  width: 15rem;
+  padding: 0.5rem;
+  border-width: 1px;
+}
+
+.icon-style {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  transition: transform 250ms;
+}
+
+.temp-style {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(226 232 240);
+  transition: transform 250ms;
+  height: 10rem;
+}
+
+.tempName-style {
+  color: rgb(226 232 240);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.tempDetails-style {
+  color: rgb(226 232 240);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(148 163 184);
+  margin: 0.75rem;
+  font-size: 15px;
+}
+
+.highlight-container {
+  color: rgb(226 232 240);
+  padding: 1rem;
+  background-color: rgb(71 85 105);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  transition: transform 250ms;
+}
+
+.highlight-container:hover,
+.icon-style:hover,
+.temp-style:hover,
+.locationIcon:hover {
+  transform: scale(1.1);
+}
+
+.status-style {
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.temp-container {
+  display: flex;
+  justify-content: space-between;
+}
