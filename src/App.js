@@ -38,7 +38,6 @@ function App() {
         return res.json();
       })
       .then((Data) => {
-        console.log("data", Data);
         setWeatherData(Data);
       })
       .catch((Error) => {

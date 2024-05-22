@@ -15,7 +15,6 @@ function Temperature(props) {
     "en-US",
     { timeZone: "UTC" }
   );
-  console.log("cond", stats.condition);
 
   return (
     <>
