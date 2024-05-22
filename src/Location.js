@@ -23,10 +23,12 @@ export const getCoorFromCity = async (city, key) => {
     `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${key}`
   )
     .then((res) => {
+      if (!res.ok) {
+        throw new Error("Network response was not ok");
+      }
       return res.json();
     })
     .then((data) => {
-      console.log("data2", data);
       return data;
     });
   return [data[0].lat, data[0].lon];
