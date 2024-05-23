@@ -3,12 +3,15 @@ import "./style.css";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import LightModeOutlinedIcon from "@mui/icons-material/LightModeOutlined";
+import { useDispatch } from "react-redux";
 
 function Temperature(props) {
   const { setCity, stats } = props;
+  const dispatch = useDispatch();
+  console.log("city", setCity);
 
   const handleCityChange = (event) => {
-    setCity(event.target.value);
+    dispatch(setCity(event.target.value));
   };
 
   const localTime = new Date(Date.now() + stats.time * 1000).toLocaleString(

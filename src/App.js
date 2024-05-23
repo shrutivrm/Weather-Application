@@ -5,29 +5,42 @@ import { useEffect, useState } from "react";
 import { getCoorFromCity, getLocation } from "./Location";
 import { API_KEY } from "./env";
 import weatherImage from "./images/weather-image.jpg";
+import { useSelector, useDispatch, Provider } from "react-redux";
+import {
+  setCity,
+  setWeatherData,
+  setPosition,
+  selectCity,
+  selectPosition,
+  selectWeatherData,
+} from "./redux/weatherSlice";
 
 function App() {
-  console.log(weatherImage);
-  const [city, setCity] = useState();
-  const [weatherData, setWeatherData] = useState();
-  const [position, setPosition] = useState();
+  const city = useSelector(selectCity);
+  const position = useSelector(selectPosition);
+  const weatherData = useSelector(selectWeatherData);
+
+  const dispatch = useDispatch();
+
   const api_url = `https://api.openweathermap.org/data/2.5/weather?lat=${position?.latitude}&lon=${position?.longitude}&appid=${API_KEY}&units=metric`;
 
   useEffect(() => {
     const hanldeLoc = async () => {
       if (city) {
         const coors = await getCoorFromCity(city, API_KEY);
-        setPosition(() => ({
-          latitude: coors[0],
-          longitude: coors[1],
-        }));
+        dispatch(
+          setPosition({
+            latitude: coors[0],
+            longitude: coors[1],
+          })
+        );
       } else {
         const res = await getLocation();
-        setPosition(res);
+        dispatch(setPosition(res));
       }
     };
     hanldeLoc();
-  }, [city]);
+  }, [city, dispatch]);
 
   useEffect(() => {
     fetch(api_url)
@@ -38,12 +51,12 @@ function App() {
         return res.json();
       })
       .then((Data) => {
-        setWeatherData(Data);
+        dispatch(setWeatherData(Data));
       })
       .catch((Error) => {
         console.log("Error thrown is ", Error);
       });
-  }, [city, position, api_url]);
+  }, [city, position, api_url, dispatch]);
 
   return (
     <div className="main-container">
